@@ -1,1 +1,1 @@
-Дотфайлы для hyprland
+Personal dotfiles for everything
