@@ -44,5 +44,7 @@ vim.opt.guicursor = table.concat({
     "r-cr:hor20-CursorReplace",
 }, ",")
 
+vim.opt.termguicolors = true
+
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
