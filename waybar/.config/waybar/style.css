@@ -1,0 +1,476 @@
+/*
+ * __        __          _                  ____  _         _
+ * \ \      / /_ _ _   _| |__   __ _ _ __  / ___|| |_ _   _| | ___
+ *  \ \ /\ / / _` | | | | '_ \ / _` | '__| \___ \| __| | | | |/ _ \
+ *   \ V  V / (_| | |_| | |_) | (_| | |     ___) | |_| |_| | |  __/
+ *    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    |____/ \__|\__, |_|\___|
+ *                 |___/                              |___/
+ *
+ * by Stephan Raabe (2023)
+ * -----------------------------------------------------
+*/
+
+/* -----------------------------------------------------
+ * Import Pywal colors
+ * ----------------------------------------------------- */
+/* @import 'style-light.css'; */
+@define-color backgroundlight #FFFFFF;
+@define-color backgrounddark #383C4A;
+@define-color bordercolor #FFFFFF;
+@define-color textcolor1 #FFFFFF;
+@define-color textcolor2 #7C818C;
+@define-color textcolor3 #000000;
+@define-color iconcolor #FFFFFF;
+@define-color iconcolordark #383C4A;
+
+/* -----------------------------------------------------
+ * General
+ * ----------------------------------------------------- */
+
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: Liberation Mono;
+  border: none;
+  border-radius: 0px;
+}
+
+window#waybar {
+  background-color: transparent;
+  /* color: #FFFFFF; */
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+/* -----------------------------------------------------
+ * Workspaces
+ * ----------------------------------------------------- */
+
+#workspaces {
+  margin: 5px 1px 6px 1px;
+  padding: 0px 3px;
+  border-radius: 10px;
+  border: 0px;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+  background-color: @backgrounddark;
+}
+
+#workspaces button {
+  color: @textcolor2;
+  background: transparent;
+  padding: 0px 0px;
+  margin: 4px 3px;
+  transition: all 0.2s ease-in-out;
+}
+
+#workspaces button.active {
+  transition: all 0.3s ease-in-out;
+  font-size: 17px;
+  color: @textcolor1;
+}
+
+#workspaces button:hover {
+  transition: none;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  border-radius: inherit;
+  color: @textcolor1;
+  background: @backgrounddark;
+}
+
+/* -----------------------------------------------------
+ * Tooltips
+ * ----------------------------------------------------- */
+
+tooltip {
+  border-radius: 16px;
+  background-color: @backgrounddark;
+  opacity: 0.9;
+  padding: 20px;
+  margin: 0px;
+}
+
+tooltip label {
+  color: @textcolor1;
+}
+
+/* -----------------------------------------------------
+ * Window
+ * ----------------------------------------------------- */
+
+#window {
+  background: @backgrounddark;
+  margin: 6px 7px 6px 7px;
+  padding: 0 10px;
+  border-radius: 12px;
+  color: @textcolor1;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+/* -----------------------------------------------------
+ * Taskbar
+ * ----------------------------------------------------- */
+
+#taskbar {
+  background: @backgrounddark;
+  margin: 6px 7px 6px 7px;
+  padding: 5px;
+  border-radius: 10px;
+  font-weight: normal;
+  font-style: normal;
+}
+
+#taskbar button {
+  margin: 0;
+  border-radius: 15px;
+  padding: 0px 5px 0px 5px;
+}
+
+#taskbar.empty {
+  background-color: transparent;
+}
+
+/* -----------------------------------------------------
+ * Modules
+ * ----------------------------------------------------- */
+
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+/* -----------------------------------------------------
+ * Custom Quicklinks
+ * ----------------------------------------------------- */
+
+#custom-brave,
+#custom-browser,
+#custom-keybindings,
+#custom-outlook,
+#custom-filemanager,
+#custom-teams,
+#custom-chatgpt,
+#custom-calculator,
+#custom-windowsvm,
+#custom-cliphist,
+#custom-settings,
+#custom-wallpaper,
+#custom-system,
+#custom-hyprshade,
+#custom-hypridle,
+#custom-quicklink1,
+#custom-quicklink2,
+#custom-quicklink3,
+#custom-quicklink4,
+#custom-quicklink5,
+#custom-quicklink6,
+#custom-quicklink7,
+#custom-quicklink8,
+#custom-quicklink9,
+#custom-quicklink10,
+#custom-waybarthemes {
+  margin-right: 23px;
+  font-size: 20px;
+  font-weight: bold;
+  color: @iconcolor;
+}
+
+#custom-hyprshade {
+  margin-right: 12px;
+}
+
+#custom-hypridle {
+  margin-right: 16px;
+}
+
+#custom-hypridle.active {
+  color: @iconcolor;
+}
+
+#custom-hypridle.notactive {
+  color: #dc2f2f;
+}
+
+#custom-waybarthemes,
+#custom-system {
+  margin-right: 15px;
+}
+
+/* -----------------------------------------------------
+ * Custom Modules
+ * ----------------------------------------------------- */
+
+#custom-appmenu {
+  font-size: 20px;
+  color: @textcolor1;
+  background-color: @backgrounddark;
+  margin: 5px 7px 5px 5px;
+  padding: 0 15px 0 10px;
+  border-radius: 10px;
+}
+
+/* -----------------------------------------------------
+ * Custom Updates
+ * ----------------------------------------------------- */
+
+#custom-updates {
+  background-color: @backgrounddark;
+  font-size: 16px;
+  color: @textcolor2;
+  border-radius: 10px;
+  margin: 6px 7px 6px 0;
+  padding: 5px;
+  color: @textcolor1;
+}
+
+#custom-updates.green {
+  background-color: @backgrounddark;
+}
+
+#custom-updates.yellow {
+  background-color: #ff9a3c;
+  color: #ffffff;
+}
+
+#custom-updates.red {
+  background-color: #dc2f2f;
+  color: #ffffff;
+}
+
+/* -----------------------------------------------------
+ * Hardware
+ * ----------------------------------------------------- */
+
+#disk,
+#memory,
+#cpu,
+#language,
+#custom-updates {
+  font-size: 15px;
+  color: @iconcolor;
+  background: @backgrounddark;
+  margin: 6px 7px 6px 0;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#cpu,
+#language {
+  padding-left: 8px;
+}
+
+/* -----------------------------------------------------
+ * Utils Group
+ * ----------------------------------------------------- */
+#custom-exit,
+#idle_inhibitor,
+#custom-wallpaper,
+#custom-cliphist {
+  color: @iconcolor;
+  background-color: @backgrounddark;
+  border-radius: 10px;
+  margin: 6px 7px 6px 0;
+  font-size: 20px;
+}
+
+#custom-exit {
+  font-weight: bold;
+  padding: 5px 10px 5px 5px;
+}
+
+#idle_inhibitor {
+  font-size: 18px;
+  color: #dc2f2f;
+  padding: 5px 5px 5px 7px;
+}
+
+#idle_inhibitor.activated {
+  color: #27df86;
+  padding: 5px 5px 5px 5px;
+}
+
+#custom-cliphist,
+#custom-wallpaper {
+  padding: 5px 11px 5px 5px;
+}
+
+#custom-ml4w-welcome {
+  background-image: url("ml4w-icon-white-darkbg.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-right: 25px;
+  margin: 6px 7px 6px 0;
+}
+
+/* -----------------------------------------------------
+ * Clock
+ * ----------------------------------------------------- */
+
+#clock {
+  background-color: @backgrounddark;
+  font-size: 16px;
+  color: @textcolor1;
+  border-radius: 15px;
+  margin: 6px 7px 6px 0px;
+  padding: 0 10px 0px 10px;
+}
+
+/* -----------------------------------------------------
+ * Weather
+ * ----------------------------------------------------- */
+#custom-weather {
+  padding-right: 16px;
+  border-radius: 0px 10px 10px 0px;
+  transition: none;
+  color: #ffffff;
+  background: #383c4a;
+}
+
+/* -----------------------------------------------------
+ * Pulseaudio
+ * ----------------------------------------------------- */
+
+#pulseaudio {
+  background-color: @backgrounddark;
+  font-size: 16px;
+  color: @textcolor1;
+  background-color: @backgrounddark;
+  border-radius: 10px;
+  margin: 6px 7px 6px 0px;
+  padding: 0 10px 0px 10px;
+}
+
+#pulseaudio.muted {
+  background-color: @backgrounddark;
+  color: @textcolor1;
+}
+
+/* -----------------------------------------------------
+ * Network
+ * ----------------------------------------------------- */
+
+#network {
+  background-color: @backgrounddark;
+  font-size: 16px;
+  color: @textcolor1;
+  border-radius: 10px;
+  margin: 6px 7px 6px 0px;
+  padding: 0 10px 0px 10px;
+}
+
+#network.ethernet {
+  background-color: @backgroundlight;
+  color: @textcolor1;
+}
+
+#network.wifi {
+  background-color: @backgrounddark;
+  color: @textcolor1;
+}
+
+/* -----------------------------------------------------
+ * Bluetooth
+ * ----------------------------------------------------- */
+
+#bluetooth,
+#bluetooth.on,
+#bluetooth.connected {
+  background-color: @backgroundlight;
+  font-size: 16px;
+  color: @textcolor2;
+  border-radius: 15px;
+  padding: 2px 10px 0px 10px;
+  margin: 10px 15px 10px 0px;
+}
+
+#bluetooth.off {
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* -----------------------------------------------------
+ * Battery
+ * ----------------------------------------------------- */
+
+#battery {
+  background-color: @backgroundlight;
+  font-size: 16px;
+  color: @textcolor2;
+  border-radius: 15px;
+  padding: 2px 15px 0px 10px;
+  margin: 10px 15px 10px 0px;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @textcolor2;
+  background-color: @backgroundlight;
+}
+
+@keyframes blink {
+  to {
+    background-color: @backgroundlight;
+    color: @textcolor2;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: #f53c3c;
+  color: @textcolor3;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* -----------------------------------------------------
+ * Tray
+ * ----------------------------------------------------- */
+
+#tray {
+  margin: 6px 7px 6px 7px;
+  padding: 5px;
+  background-color: @backgrounddark;
+  border-radius: 10px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #eb4d4b;
+}
+
+/* -----------------------------------------------------
+ * Other
+ * ----------------------------------------------------- */
+
+label:focus {
+  background-color: #000000;
+}
+
+#backlight {
+  background-color: #90b1b1;
+}
+
+#network {
+  background-color: #2980b9;
+}
+
+#network.disconnected {
+  background-color: #f53c3c;
+}

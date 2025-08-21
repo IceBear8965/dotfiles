@@ -1,0 +1,23 @@
+--NOTE: Basic configs
+require("core.options")
+require("core.plugins")
+require("core.mapping")
+
+--NOTE: Plugins configs
+require("plugins.onedark")
+require("plugins.telescope")
+require("plugins.neo-tree")
+require("plugins.mason")
+require("plugins.lsp")
+require("plugins.cmp")
+require("plugins.none-ls")
+require("plugins.nvim-dap")
+require("plugins.tiny-diagnostic")
+require("plugins.gitsigns")
+require("plugins.autopairs")
+require("plugins.autotags")
+require("plugins.bufferline")
+require("plugins.lualine")
+require("plugins.toggleterm")
+require("plugins.treesitter")
+require("plugins.coderunner")
