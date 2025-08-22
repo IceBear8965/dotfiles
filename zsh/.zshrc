@@ -89,9 +89,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# Powerlevel10k colorscheme
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
