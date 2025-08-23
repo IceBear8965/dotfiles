@@ -89,6 +89,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# fzf fuzzy finder
+source <(fzf --zsh)
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

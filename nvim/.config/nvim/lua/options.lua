@@ -32,17 +32,17 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
 -- Cursors
-vim.cmd [[
-  highlight Cursor guifg=#e9dbb7 guibg=#d83e2d
-  highlight CursorInsert guifg=NONE guibg=#d83e2d
-  highlight CursorReplace guifg=NONE guibg=#d3869b
-]]
-
-vim.opt.guicursor = table.concat({
-    "n-v-c:block-Cursor",
-    "i-ci-ve:ver35-CursorInsert",
-    "r-cr:hor20-CursorReplace",
-}, ",")
+-- vim.cmd [[
+--   highlight Cursor guifg=#e9dbb7 guibg=#d83e2d
+--   highlight CursorInsert guifg=NONE guibg=#d83e2d
+--   highlight CursorReplace guifg=NONE guibg=#d3869b
+-- ]]
+--
+-- vim.opt.guicursor = table.concat({
+--     "n-v-c:block-Cursor",
+--     "i-ci-ve:ver35-CursorInsert",
+--     "r-cr:hor20-CursorReplace",
+-- }, ",")
 
 vim.opt.termguicolors = true
 

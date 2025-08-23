@@ -8,6 +8,7 @@ local M = {}
 M.base46 = {
     theme = "gruvbox",
     transparency = false,
+    integrations = { "dap" },
 
     -- hl_override = {
     -- 	Comment = { italic = true },
