@@ -76,6 +76,10 @@ return {
                     vim.lsp.protocol.make_client_capabilities(),
                     { offsetEncoding = { "utf-16" } } -- Pyright любит UTF-16
                 ),
+                python = {
+                    venvPath = ".",
+                    venv = ".venv",
+                },
                 settings = {
                     python = {
                         analysis = {
