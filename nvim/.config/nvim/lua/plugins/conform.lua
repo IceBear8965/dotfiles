@@ -13,6 +13,7 @@ return {
                 css = { "prettierd" }, -- CSS
                 javascript = { "prettierd" }, -- JS
                 typescript = { "prettierd" }, -- TS
+                json = { "prettierd" },
                 cpp = { "clang-format" }, -- C++
             },
             format_on_save = true, -- автоформатирование при сохранении
