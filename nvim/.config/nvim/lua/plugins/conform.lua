@@ -1,6 +1,6 @@
 return {
     "stevearc/conform.nvim",
-    dependencies = { "williamboman/mason.nvim", "williamboman/mason-conform.nvim" },
+    dependencies = { "williamboman/mason.nvim", "zapling/mason-conform.nvim" },
     config = function()
         local conform = require "conform"
 
