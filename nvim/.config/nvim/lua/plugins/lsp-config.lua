@@ -70,30 +70,51 @@ return {
                 },
             }
 
-            lspconfig.pyright.setup {
-                capabilities = vim.tbl_deep_extend(
-                    "force",
-                    vim.lsp.protocol.make_client_capabilities(),
-                    { offsetEncoding = { "utf-16" } } -- Pyright любит UTF-16
-                ),
-                python = {
-                    venvPath = ".",
-                    venv = ".venv",
-                },
+            lspconfig.pylsp.setup {
                 settings = {
-                    python = {
-                        analysis = {
-                            typeCheckingMode = "basic",
-                            autoSearchPaths = true,
-                            useLibraryCodeForTypes = true,
-                            diagnosticMode = "workspace",
+                    pylsp = {
+                        plugins = {
+                            pycodestyle = { enabled = false },
+                            pyflakes = { enabled = false },
+                            mccabe = { enabled = false },
+                            autopep8 = { enabled = false },
+                            yapf = { enabled = false },
+                            black = { enabled = false },
+                            pydocstyle = { enabled = false },
+                            ruff = { enabled = false },
                         },
                     },
                 },
                 on_attach = function(client, bufnr)
                     client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentRangeFormattingProvider = false
                 end,
             }
+
+            -- lspconfig.pyright.setup {
+            --     capabilities = vim.tbl_deep_extend(
+            --         "force",
+            --         vim.lsp.protocol.make_client_capabilities(),
+            --         { offsetEncoding = { "utf-16" } } -- Pyright любит UTF-16
+            --     ),
+            --     python = {
+            --         venvPath = ".",
+            --         venv = ".venv",
+            --     },
+            --     settings = {
+            --         python = {
+            --             analysis = {
+            --                 typeCheckingMode = "basic",
+            --                 autoSearchPaths = true,
+            --                 useLibraryCodeForTypes = true,
+            --                 diagnosticMode = "workspace",
+            --             },
+            --         },
+            --     },
+            --     on_attach = function(client, bufnr)
+            --         client.server_capabilities.documentFormattingProvider = false
+            --     end,
+            -- }
 
             lspconfig.ruff.setup {
                 capabilities = vim.tbl_deep_extend(
