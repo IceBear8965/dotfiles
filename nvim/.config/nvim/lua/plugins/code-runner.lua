@@ -6,8 +6,8 @@ return {
         require("code_runner").setup {
             filetype = {
                 python = "python3 -u",
-                cpp = "g++ -std=c++17 $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
-                c = "gcc $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+                cpp = "clang++ $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+                c = "clang $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
                 javascript = "node",
                 typescript = "ts-node",
                 rust = "cargo run",
