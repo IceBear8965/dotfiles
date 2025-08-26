@@ -15,6 +15,7 @@ return {
                 typescript = { "prettierd" }, -- TS
                 json = { "prettierd" },
                 cpp = { "clang-format" }, -- C++
+                xml = { "xmlformatter" },
             },
             format_on_save = true, -- автоформатирование при сохранении
         }
