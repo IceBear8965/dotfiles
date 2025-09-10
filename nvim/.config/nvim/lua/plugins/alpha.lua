@@ -30,6 +30,7 @@ return {
 
         -- Кнопки Telescope
         dashboard.section.buttons.val = {
+            dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
             dashboard.button("ff", "  Find File", ":Telescope find_files<CR>"),
             dashboard.button("fr", "  Recent Files", ":Telescope oldfiles<CR>"),
             dashboard.button("fg", "  Live Grep", ":Telescope live_grep<CR>"),

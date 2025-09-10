@@ -121,6 +121,7 @@ alias ta=tmux\ attach
 
 export TESSDATA_PREFIX=/opt/homebrew/Cellar/tesseract/5.5.1/share/tessdata/
 export RUFF_CONFIG="$HOME/.ruff.toml"
+export PYRIGHT_CONFIG="$HOME/.config/pyrightconfig.json"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

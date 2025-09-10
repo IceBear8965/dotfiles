@@ -70,57 +70,66 @@ return {
                 },
             }
 
-            lspconfig.pylsp.setup {
-                settings = {
-                    pylsp = {
-                        plugins = {
-                            pycodestyle = { enabled = false },
-                            pyflakes = { enabled = false },
-                            mccabe = { enabled = false },
-                            autopep8 = { enabled = false },
-                            yapf = { enabled = false },
-                            black = { enabled = false },
-                            pydocstyle = { enabled = false },
-                            ruff = { enabled = false },
-                        },
-                    },
-                },
-                on_attach = function(client, bufnr)
-                    client.server_capabilities.documentFormattingProvider = false
-                    client.server_capabilities.documentRangeFormattingProvider = false
-                end,
-            }
-
-            -- lspconfig.pyright.setup {
-            --     capabilities = vim.tbl_deep_extend(
-            --         "force",
-            --         vim.lsp.protocol.make_client_capabilities(),
-            --         { offsetEncoding = { "utf-16" } } -- Pyright любит UTF-16
-            --     ),
-            --     python = {
-            --         venvPath = ".",
-            --         venv = ".venv",
-            --     },
+            -- lspconfig.pylsp.setup {
             --     settings = {
-            --         python = {
-            --             analysis = {
-            --                 typeCheckingMode = "basic",
-            --                 autoSearchPaths = true,
-            --                 useLibraryCodeForTypes = true,
-            --                 diagnosticMode = "workspace",
+            --         pylsp = {
+            --             plugins = {
+            --                 pycodestyle = { enabled = false },
+            --                 pyflakes = { enabled = false },
+            --                 mccabe = { enabled = false },
+            --                 autopep8 = { enabled = false },
+            --                 yapf = { enabled = false },
+            --                 black = { enabled = false },
+            --                 pydocstyle = { enabled = false },
+            --                 ruff = { enabled = false },
+            --                 autoimport = { enabled = true },
             --             },
             --         },
             --     },
             --     on_attach = function(client, bufnr)
             --         client.server_capabilities.documentFormattingProvider = false
+            --         client.server_capabilities.documentRangeFormattingProvider = false
             --     end,
             -- }
+
+            lspconfig.pyright.setup {
+                capabilities = vim.tbl_deep_extend(
+                    "force",
+                    vim.lsp.protocol.make_client_capabilities(),
+                    { positionEncodings = { "utf-16" } } -- Pyright любит UTF-16
+                ),
+                python = {
+                    venvPath = ".",
+                    venv = ".venv",
+                },
+                settings = {
+                    python = {
+                        analysis = {
+                            typeCheckingMode = "basic",
+                            autoSearchPaths = true,
+                            useLibraryCodeForTypes = true,
+                            diagnosticMode = "openFilesOnly",
+                        },
+                    },
+                },
+                on_attach = function(client, bufnr)
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.config.settings = client.config.settings or {}
+                    client.config.settings.python = client.config.settings.python or {}
+                    -- Отключаем трассировку
+                    client.config.flags = client.config.flags or {}
+                    client.config.flags.allow_incremental_sync = true
+                end,
+                handlers = {
+                    ["window/logMessage"] = function() end, -- игнорируем лог
+                },
+            }
 
             lspconfig.ruff.setup {
                 capabilities = vim.tbl_deep_extend(
                     "force",
                     vim.lsp.protocol.make_client_capabilities(),
-                    { offsetEncoding = { "utf-16" } } -- Приводим Ruff к UTF-16
+                    { positionEncodings = { "utf-16" } } -- Приводим Ruff к UTF-16
                 ),
                 root_dir = lspconfig.util.root_pattern(
                     "pyproject.toml",
@@ -196,32 +205,32 @@ return {
 
             -- В конце файла после настройки серверов и keymaps
             -- Авто-импорт для Python через Pyright
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                pattern = "*.py",
-                callback = function()
-                    local params = vim.lsp.util.make_range_params(nil, "utf-16") -- Указываем UTF-16
-                    params.context = { only = { "source.addMissingImports.pyright" } }
-                    local clients =
-                        vim.lsp.get_active_clients { bufnr = vim.api.nvim_get_current_buf() }
-                    for _, client in ipairs(clients) do
-                        if client.name == "pyright" then
-                            local results = client.request_sync(
-                                "textDocument/codeAction",
-                                params,
-                                1000,
-                                vim.api.nvim_get_current_buf()
-                            )
-                            if results and results[vim.api.nvim_get_current_buf()] then
-                                for _, res in ipairs(results[vim.api.nvim_get_current_buf()]) do
-                                    if res.edit then
-                                        vim.lsp.util.apply_workspace_edit(res.edit)
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end,
-            })
+            -- vim.api.nvim_create_autocmd("BufWritePre", {
+            --     pattern = "*.py",
+            --     callback = function()
+            --         local params = vim.lsp.util.make_range_params(nil, "utf-16") -- Указываем UTF-16
+            --         params.context = { only = { "source.addMissingImports.pyright" } }
+            --         local clients =
+            --             vim.lsp.get_active_clients { bufnr = vim.api.nvim_get_current_buf() }
+            --         for _, client in ipairs(clients) do
+            --             if client.name == "pyright" then
+            --                 local results = client.request_sync(
+            --                     "textDocument/codeAction",
+            --                     params,
+            --                     1000,
+            --                     vim.api.nvim_get_current_buf()
+            --                 )
+            --                 if results and results[vim.api.nvim_get_current_buf()] then
+            --                     for _, res in ipairs(results[vim.api.nvim_get_current_buf()]) do
+            --                         if res.edit then
+            --                             vim.lsp.util.apply_workspace_edit(res.edit)
+            --                         end
+            --                     end
+            --                 end
+            --             end
+            --         end
+            --     end,
+            -- })
         end,
     },
 }
